@@ -1,8 +1,11 @@
-import Hero from "@/components/hero"
+import dynamic from "next/dynamic"
 import About from "@/components/about"
-import Gallery from "@/components/gallery"
 import Commissions from "@/components/commissions"
 import Footer from "@/components/footer"
+import Hero from "@/components/hero"
+
+// Importa Gallery dinamicamente para evitar window no server
+const Gallery = dynamic(() => import("@/components/gallery"), { ssr: false })
 
 export default function Home() {
   return (

@@ -1,10 +1,17 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowDown, MessageCircle } from "lucide-react"
 
 export default function Hero() {
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
+
+  useEffect(() => {
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight })
+  }, [])
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
     element?.scrollIntoView({ behavior: "smooth" })
@@ -14,25 +21,26 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4">
       {/* Animated particles background */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-primary/30 rounded-full"
-            initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-            }}
-            animate={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Number.POSITIVE_INFINITY,
-              repeatType: "reverse",
-            }}
-          />
-        ))}
+        {[...Array(20)].map((_, i) => {
+          const x = Math.random() * windowSize.width
+          const y = Math.random() * windowSize.height
+          return (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-primary/30 rounded-full"
+              initial={{ x, y }}
+              animate={{
+                x: Math.random() * windowSize.width,
+                y: Math.random() * windowSize.height,
+              }}
+              transition={{
+                duration: Math.random() * 10 + 10,
+                repeat: Number.POSITIVE_INFINITY,
+                repeatType: "reverse",
+              }}
+            />
+          )
+        })}
       </div>
 
       <div className="relative z-10 text-center max-w-5xl mx-auto">
@@ -43,11 +51,11 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="text-foreground">
-              Portfolio de Builds no Minecraft – 
-            </span>
+            <span className="text-foreground">Portfolio de Builds no Minecraft – </span>
             <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary">Mwozy</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary">
+              Mwozy
+            </span>
           </motion.h1>
         </motion.div>
 

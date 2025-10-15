@@ -45,7 +45,7 @@ export default function Commissions() {
                 className="bg-secondary hover:bg-secondary/90 text-secondary-foreground neon-purple text-xl px-12 py-7 rounded-xl font-bold transition-all duration-300 hover:scale-105"
                 asChild
               >
-                <a href="https://discord.gg/mwozy" target="_blank" rel="noopener noreferrer">
+                <a href="https://discord.com/users/983796100580388884" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="mr-3 h-6 w-6" />
                   Solicitar seu próprio mapa no Discord
                 </a>
